@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright 2017 NXP
+ * Copyright Trucrux.
+ */
+
+#include "imx8mq-trux-8MDVP-legacy.dtsi"
+#include "imx8mq-trux-wifi.dtsi"
+#include "imx8mq-trux-8MDVP-lvds-dcss.dtsi"
+
+/ {
+	model = "Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+LVDS";
+};

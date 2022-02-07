@@ -79,6 +79,38 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb imx8mq-evk-rpmsg.dtb imx8mq-evk-pcie1-m
 			  imx8mq-evk-usdhc2-m2.dtb imx8mq-evk-pcie-ep.dtb \
 			  imx8mq-evk-no-product.dtb imx8mq-evk-no-dynamic_partition.dtb \
 			  imx8mq-evk-no-product-no-dynamic_partition.dtb
+dtb-$(CONFIG_ARCH_MXC) += imx8mq-trux-8MDVP-legacy-m4-sd-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-sd-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-sd-lvds-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-sd-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-sd-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-wifi-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-wifi-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-wifi-lvds-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-wifi-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-m4-wifi-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-lvds-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-hdmi.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-lvds-dp.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-m4-sd-hdmi.dtb \
+			  imx8mq-trux-8MDVP-m4-sd-lvds.dtb \
+			  imx8mq-trux-8MDVP-m4-sd-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-m4-wifi-hdmi.dtb \
+			  imx8mq-trux-8MDVP-m4-wifi-lvds.dtb \
+			  imx8mq-trux-8MDVP-m4-wifi-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-sd-hdmi.dtb \
+			  imx8mq-trux-8MDVP-sd-lvds.dtb \
+			  imx8mq-trux-8MDVP-sd-lvds-hdmi.dtb \
+			  imx8mq-trux-8MDVP-wifi-hdmi.dtb \
+			  imx8mq-trux-8MDVP-wifi-lvds.dtb \
+			  imx8mq-trux-8MDVP-wifi-lvds-hdmi.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-ak4497.dtb imx8mq-evk-audio-tdm.dtb imx8mq-evk-pdm.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-root.dtb imx8mq-evk-inmate.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-lcdif-rm67191.dtb imx8mq-evk-lcdif-adv7535.dtb
