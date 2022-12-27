@@ -9,5 +9,5 @@
 #include "imx8mq-trux-8MDVP-lvds-dcss.dtsi"
 
 / {
-	model = "Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+LVDS";
+	model = "Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+MIPI-DSI";
 };
