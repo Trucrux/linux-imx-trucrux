@@ -8,7 +8,7 @@
 #include "imx8mq-trux-8MDVP.dtsi"
 
 / {
-	gpio-keys {
+/*	gpio-keys {
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_gpio_keys>;
 
@@ -34,6 +34,7 @@
 			gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
 		};
 	};
+*/
 
 	can0_osc: can0_osc {
 		clock-frequency = <20000000>;
@@ -129,7 +130,7 @@
 		>;
 	};
 
-	pinctrl_gpio_keys: keygrp {
+/*	pinctrl_gpio_keys: keygrp {
 		fsl,pins = <
 			MX8MQ_IOMUXC_SAI1_TXD3_GPIO4_IO15		0xc6
 			MX8MQ_IOMUXC_SAI1_TXD6_GPIO4_IO18		0xc6
@@ -146,6 +147,7 @@
 			MX8MQ_IOMUXC_SAI1_TXD5_GPIO4_IO17		0xc6
 		>;
 	};
+*/
 	pinctrl_pcie0: pcie0grp {
 		fsl,pins = <
 			MX8MQ_IOMUXC_SAI1_RXD5_GPIO4_IO7		0x16
