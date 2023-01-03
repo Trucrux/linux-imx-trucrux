@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright 2017 NXP
+ * Copyright 2018-2020 Trucrux Ltd.
+ */
+
+#include "imx8mq-trux-8MDVP-legacy.dtsi"
+#include "imx8mq-trux-8MDVP-sd.dtsi"
+#include "imx8mq-trux-8MDVP-lvds-dcss.dtsi"
+
+/ {
+	model = "Trucrux DART-MX8M on DT8MCustomBoard 1.x SD+LVDS";
+};
