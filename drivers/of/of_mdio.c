@@ -50,6 +50,8 @@ static int of_mdiobus_register_phy(struct mii_bus *mdio,
 	int rc;
 	u32 phy_id;
 
+	mdelay(20);
+
 	is_c45 = of_device_is_compatible(child,
 					 "ethernet-phy-ieee802.3-c45");
 
