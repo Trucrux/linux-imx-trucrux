@@ -98,12 +98,12 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-trux-8MDVP-legacy-m4-sd-dp.dtb \
 			  imx8mq-trux-8MDVP-legacy-sd-dp.dtb \
 			  imx8mq-trux-8MDVP-legacy-sd-hdmi.dtb \
 			  imx8mq-trux-8MDVP-legacy-sd-lvds-dp.dtb \
-			  imx8mq-trux-8MDVP-legacy-sd-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-sd-mipi.dtb \
 			  imx8mq-trux-8MDVP-legacy-sd-lvds-hdmi.dtb \
 			  imx8mq-trux-8MDVP-legacy-wifi-dp.dtb \
 			  imx8mq-trux-8MDVP-legacy-wifi-hdmi.dtb \
 			  imx8mq-trux-8MDVP-legacy-wifi-lvds-dp.dtb \
-			  imx8mq-trux-8MDVP-legacy-wifi-lvds.dtb \
+			  imx8mq-trux-8MDVP-legacy-wifi-mipi.dtb \
 			  imx8mq-trux-8MDVP-legacy-wifi-lvds-hdmi.dtb \
 			  imx8mq-trux-8MDVP-m4-sd-hdmi.dtb \
 			  imx8mq-trux-8MDVP-m4-sd-lvds.dtb \
