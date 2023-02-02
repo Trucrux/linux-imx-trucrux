@@ -35,6 +35,17 @@
 		};
 	};
 */
+	gpio-keys {
+		compatible = "gpio-keys";
+
+		wake-up {
+			label = "Wake-UP";
+			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_BACK>;
+			wakeup-source;
+		};
+	};
+
 
 	can0_osc: can0_osc {
 		clock-frequency = <20000000>;
