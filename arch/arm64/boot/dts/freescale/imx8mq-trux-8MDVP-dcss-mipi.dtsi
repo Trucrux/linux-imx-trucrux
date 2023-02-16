@@ -22,7 +22,11 @@
 
 &irqsteer{
 	status = "okay";
-	};
+};
+
+&pwm1 {
+	status = "okay";
+};
 
 &dcss {
 	status = "okay";
