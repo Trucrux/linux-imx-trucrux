@@ -66,14 +66,6 @@
 		clock-frequency = <100000000>;
 	};
 
-	extcon_usb1: extcon_usb1 {
-		compatible = "linux,extcon-usb-gpio";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_extcon>;
-		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-	};
-
 	can0_osc: can0_osc {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -328,6 +320,15 @@
 	sda-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
+        typec_ptn5150: typec@3d {
+                status = "okay";
+                compatible = "nxp,ptn5150";
+                reg = <0x3d>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&pinctrl_extcon>;
+                int-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+        };
+
 	/* Capacitive touch controller */
 	ft5x06_ts: ft5x06_ts@38 {
 		status = "disabled";
@@ -564,7 +565,7 @@
 	snps,dis-u1-entry-quirk;
 	snps,dis-u2-entry-quirk;
 	status = "okay";
-	extcon = <&extcon_usb1>;
+	extcon = <&typec_ptn5150>;
 };
 
 &usb3_phy1 {
