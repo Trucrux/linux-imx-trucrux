@@ -33,25 +33,36 @@
 
 	gpio-keys {
 		compatible = "gpio-keys";
+		pinctrl-0 = <&pinctrl_gpio_keys>;
 
-		wake-up {
-			label = "Wake-Up";
-			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_BACK>;
-			wakeup-source;
-		};
-	};
+                up {
+                        label = "Vol-Up";
+                        gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_VOLUMEUP>;
+                        wakeup-source;
+                };
 
-	leds {
-		compatible = "gpio-leds";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_leds>;
+                down {
+                        label = "Vol-Down";
+                        gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_VOLUMEDOWN>;
+                        wakeup-source;
+                };
 
-		emmc {
-			label = "eMMC";
-			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc0";
-		};
+                home {
+                        label = "Home";
+                        gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_HOMEPAGE>;
+                        wakeup-source;
+                };
+
+                back {
+                        label = "Back";
+                        gpios = <&gpio4 6 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_BACK>;
+                        wakeup-source;
+                };
+
 	};
 
 	pcie0_refclk: pcie0-refclk {
@@ -64,14 +75,6 @@
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <100000000>;
-	};
-
-	extcon_usb1: extcon_usb1 {
-		compatible = "linux,extcon-usb-gpio";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_extcon>;
-		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-		status = "okay";
 	};
 
 	can0_osc: can0_osc {
@@ -108,40 +111,15 @@
 &ecspi1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_ecspi1>;
-	cs-gpios = <&gpio5  9 GPIO_ACTIVE_HIGH>,
+	cs-gpios = /*<&gpio3 14 GPIO_ACTIVE_HIGH>,*/
 		   <&gpio1 12 GPIO_ACTIVE_HIGH>,
 		   <&gpio2 20 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
-	/* Resistive touch controller */
-	ads7846@0 {
-		reg = <0>;
-		compatible = "ti,ads7846";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_restouch>;
-		interrupt-parent = <&gpio1>;
-		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-		spi-max-frequency = <1500000>;
-		pendown-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
-		ti,x-min = /bits/ 16 <125>;
-		ti,x-max = /bits/ 16 <4008>;
-		ti,y-min = /bits/ 16 <282>;
-		ti,y-max = /bits/ 16 <3864>;
-		ti,x-plate-ohms = /bits/ 16 <180>;
-		ti,pressure-max = /bits/ 16 <255>;
-		ti,debounce-max = /bits/ 16 <10>;
-		ti,debounce-tol = /bits/ 16 <3>;
-		ti,debounce-rep = /bits/ 16 <1>;
-		ti,settle-delay-usec = /bits/ 16 <150>;
-		ti,keep-vref-on;
-		wakeup-source;
-		status = "disabled";
-	};
-
 	/* CAN controller */
-	can0: can@1 {
+	can0: can@0 {
 		compatible = "microchip,mcp251xfd";
-		reg = <1>;
+		reg = <0>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_can>;
 		clocks = <&can0_osc>;
@@ -180,9 +158,9 @@
 			MX8MQ_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x13
 			MX8MQ_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x13
 			MX8MQ_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x13
-			MX8MQ_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x13
-			MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x13
-			MX8MQ_IOMUXC_SD2_WP_GPIO2_IO20			0x13
+			/*MX8MQ_IOMUXC_NAND_DQS_GPIO3_IO14		0x13	 CAN */
+			MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12              0x13
+			MX8MQ_IOMUXC_SD2_WP_GPIO2_IO20			0x13	/* SPI DEV */
 		>;
 	};
 
@@ -317,6 +295,15 @@
 			MX8MQ_IOMUXC_GPIO1_IO05_GPIO1_IO5		0xc6
 		>;
 	};
+
+	pinctrl_gpio_keys: keygrp {
+                fsl,pins = <
+                        MX8MQ_IOMUXC_SAI1_TXD3_GPIO4_IO15               0xc6
+                        MX8MQ_IOMUXC_SAI1_TXD6_GPIO4_IO18               0xc6
+                        MX8MQ_IOMUXC_SAI1_TXD1_GPIO4_IO13               0xc6
+                        MX8MQ_IOMUXC_SAI1_RXD4_GPIO4_IO6                0xc6
+                >;
+        };
 };
 
 &i2c2 {
@@ -327,6 +314,15 @@
 	scl-gpios = <&gpio5 16 GPIO_ACTIVE_HIGH>;
 	sda-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
 	status = "okay";
+
+        typec_ptn5150: typec@3d {
+                status = "okay";
+                compatible = "nxp,ptn5150";
+                reg = <0x3d>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&pinctrl_extcon>;
+                int-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+        };
 
 	/* Capacitive touch controller */
 	ft5x06_ts: ft5x06_ts@38 {
@@ -345,17 +341,17 @@
 		wakeup-source;
 	};
 
-	/* DS1337 RTC module */
-	rtc@68 {
-		status = "okay";
-		compatible = "dallas,ds1337";
-		reg = <0x68>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_rtc>;
-		interrupt-parent = <&gpio1>;
-		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-		wakeup-source;
-	};
+	/* RV3028 RTC module */
+	rtc_rv3028: rv3028@52 {
+                reg = <0x52>;
+                compatible = "microcrystal,rv3028";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&pinctrl_rtc>;
+                interrupt-parent = <&gpio1>;
+                interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
+                wakeup-source;
+        };
 
 	ov5640_mipi1: ov5640_mipi1@3c {
 		status = "okay";
@@ -564,7 +560,7 @@
 	snps,dis-u1-entry-quirk;
 	snps,dis-u2-entry-quirk;
 	status = "okay";
-	extcon = <&extcon_usb1>;
+	extcon = <&typec_ptn5150>;
 };
 
 &usb3_phy1 {
