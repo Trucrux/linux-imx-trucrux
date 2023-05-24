@@ -35,19 +35,19 @@
 		compatible = "gpio-keys";
 		pinctrl-0 = <&pinctrl_gpio_keys>;
 
-                up {
+                /*up {
                         label = "Vol-Up";
-                        gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
+                        gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
                         linux,code = <KEY_VOLUMEUP>;
                         wakeup-source;
                 };
 
                 down {
                         label = "Vol-Down";
-                        gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+                        gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
                         linux,code = <KEY_VOLUMEDOWN>;
                         wakeup-source;
-                };
+                };*/
 
                 home {
                         label = "Home";
@@ -298,10 +298,10 @@
 
 	pinctrl_gpio_keys: keygrp {
                 fsl,pins = <
-                        MX8MQ_IOMUXC_SAI1_TXD3_GPIO4_IO15               0xc6
-                        MX8MQ_IOMUXC_SAI1_TXD6_GPIO4_IO18               0xc6
-                        MX8MQ_IOMUXC_SAI1_TXD1_GPIO4_IO13               0xc6
-                        MX8MQ_IOMUXC_SAI1_RXD4_GPIO4_IO6                0xc6
+                        MX8MQ_IOMUXC_SAI1_TXD1_GPIO4_IO13               0xc6 /*	HOME	*/
+                        MX8MQ_IOMUXC_SAI1_RXD4_GPIO4_IO6                0xc6 /*	BACK	*/
+			/*MX8MQ_IOMUXC_SAI5_RXC_GPIO3_IO20		0xc6 	VOL_UP
+			MX8MQ_IOMUXC_UART4_RXD_GPIO5_IO28		0xc6 	VOL_DOWN*/
                 >;
         };
 };
