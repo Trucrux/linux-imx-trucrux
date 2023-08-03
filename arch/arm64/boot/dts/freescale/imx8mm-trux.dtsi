@@ -88,16 +88,6 @@
 		regulator-always-on;
 	};
 
-	reg_eth_phy: regulator-eth-phy {
-		compatible = "regulator-fixed";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_reg_eth_phy>;
-		regulator-name = "eth_phy_pwr";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-	};
-
 	reserved-memory {
 		/* cma region is provided by kernel command line as cma=<size>M */
 		/delete-node/ linux,cma;
@@ -287,12 +277,6 @@
 	pinctrl_pwm1: pwm1grp {
 		fsl,pins = <
 			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT		0x06
-		>;
-	};
-
-	pinctrl_reg_eth_phy: regethphy {
-		fsl,pins = <
-			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x41
 		>;
 	};
 
