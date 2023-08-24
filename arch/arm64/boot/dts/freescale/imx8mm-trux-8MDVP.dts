@@ -105,13 +105,6 @@
 		clock-frequency = <40000000>;
 	};
 
-	extcon_usb1: extcon_usb1 {
-		compatible = "linux,extcon-usb-gpio";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_extcon>;
-		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-	};
 };
 
 &ecspi1 {
@@ -178,6 +171,15 @@
 	scl-gpios = <&gpio5 16 GPIO_ACTIVE_HIGH>;
 	sda-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
 	status = "okay";
+
+	typec_ptn5150: typec@3d {
+		status = "okay";
+		compatible = "nxp,ptn5150";
+		reg = <0x3d>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_extcon>;
+		int-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+	};
 
 	ov5640_mipi1: ov5640_mipi1@3c {
 		status = "okay";
@@ -326,7 +328,12 @@
 	dr_mode = "otg";
 	picophy,pre-emp-curr-control = <3>;
 	picophy,dc-vol-level-adjust = <7>;
-	extcon = <&extcon_usb1>;
+	hnp-disable;
+	srp-disable;
+	adp-disable;
+	snps,dis-u1-entry-quirk;
+	snps,dis-u2-entry-quirk;
+	extcon = <&typec_ptn5150>;
 	status = "okay";
 };
 
