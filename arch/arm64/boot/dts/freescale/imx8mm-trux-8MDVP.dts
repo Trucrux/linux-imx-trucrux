@@ -105,13 +105,6 @@
 		clock-frequency = <40000000>;
 	};
 
-	extcon_usb1: extcon_usb1 {
-		compatible = "linux,extcon-usb-gpio";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_extcon>;
-		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-	};
 };
 
 &ecspi1 {
@@ -179,21 +172,13 @@
 	sda-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
-	/* Capacitive touch controller */
-	ft5x06_ts: ft5x06_ts@38 {
+	typec_ptn5150: typec@3d {
 		status = "okay";
-		compatible = "edt,edt-ft5206";
-		reg = <0x38>;
+		compatible = "nxp,ptn5150";
+		reg = <0x3d>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_captouch>;
-		reset-gpios = <&pca6408_2 4 GPIO_ACTIVE_LOW>;
-		interrupt-parent = <&gpio1>;
-		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-		touchscreen-size-x = <800>;
-		touchscreen-size-y = <480>;
-		touchscreen-inverted-x;
-		touchscreen-inverted-y;
-		wakeup-source;
+		pinctrl-0 = <&pinctrl_extcon>;
+		int-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
 	};
 
 	ov5640_mipi1: ov5640_mipi1@3c {
@@ -343,7 +328,12 @@
 	dr_mode = "otg";
 	picophy,pre-emp-curr-control = <3>;
 	picophy,dc-vol-level-adjust = <7>;
-	extcon = <&extcon_usb1>;
+	hnp-disable;
+	srp-disable;
+	adp-disable;
+	snps,dis-u1-entry-quirk;
+	snps,dis-u2-entry-quirk;
+	extcon = <&typec_ptn5150>;
 	status = "okay";
 };
 
@@ -488,11 +478,6 @@
 		>;
 	};
 
-	pinctrl_captouch: captouchgrp {
-		fsl,pins = <
-			MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14		0x16
-		>;
-	};
 
 	pinctrl_leds: ledgrp {
 		fsl,pins = <
