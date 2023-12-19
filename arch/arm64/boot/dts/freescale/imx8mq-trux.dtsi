@@ -68,10 +68,9 @@
 	};
 
 	bt_rfkill {
-		compatible = "net,rfkill-gpio";
+		compatible = "fsl,mxc_bt_rfkill";
 		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_bt>;
-		reset-gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
+		bt-power-gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
 		name = "bt_rfkill";
 		type = "bluetooth";
 		status = "okay";
@@ -688,7 +687,7 @@
 /* Bluetooth */
 &uart4 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart4>;
+	pinctrl-0 = <&pinctrl_uart4>, <&pinctrl_bt>;
 	assigned-clocks = <&clk IMX8MQ_CLK_UART4>;
 	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
 	fsl,uart-has-rtscts;
