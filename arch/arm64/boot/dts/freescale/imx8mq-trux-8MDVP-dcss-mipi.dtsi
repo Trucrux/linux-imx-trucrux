@@ -67,7 +67,7 @@
 		compatible = "bananapi,lhr050h41", "ilitek,ili9881c";
 		pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
 		pinctrl-names = "default";
-		reset-gpio = <&gpio3 5 GPIO_ACTIVE_LOW>;
+		reset-gpio = <&gpio3 15 GPIO_ACTIVE_LOW>;
 		reg = <0>;
 		timing-mode = <1>;
 		video-mode = <3>;
@@ -109,7 +109,7 @@
         gt911: touchscreen@14 {
                 compatible = "goodix,gt911";
                 reg = <0x14>;
-                reset-gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>;
+                reset-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
                 interrupt-parent = <&gpio1>;
                 interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
                 irq-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
